@@ -27,11 +27,15 @@ app.use(errorHandler);
 // Start server
 const startServer = async () => {
   try {
-    await connectDB();
+    if (process.env.SKIP_DB === 'true') {
+      console.log('⚠️  Skipping MongoDB connection (SKIP_DB=true)');
+    } else {
+      await connectDB();
+    }
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📧 Email: ${process.env.EMAIL_USER || 'sudhakarnatarajan501@gmail.com'}`);
-      console.log(`🗄️  Database: ${process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio'}`);
+      console.log(`📧 Email: ${process.env.EMAIL_USER || 'not-set'}`);
+      console.log(`🗄️  Database URI: ${process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio'} (skip=${process.env.SKIP_DB === 'true'})`);
     });
   } catch (error) {
     console.error('❌ Server startup error:', error);

@@ -15,7 +15,7 @@ router.use('/projects', projectRoutes);
 router.get('/health', (req, res) => {
   res.json({ 
     status: 'healthy',
-    database: 'connected', // This will be updated dynamically
+    database: process.env.SKIP_DB === 'true' ? 'skipped' : 'connecting',
     timestamp: new Date().toISOString()
   });
 });
