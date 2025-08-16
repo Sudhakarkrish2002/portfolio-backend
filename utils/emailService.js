@@ -2,11 +2,11 @@ const nodemailer = require('nodemailer');
 
 // Email transporter configuration
 const createTransporter = () => {
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER || 'sudhakarnatarajan501@gmail.com',
-      pass: process.env.EMAIL_PASS || 'your-app-password'
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     },
     tls: {
       rejectUnauthorized: false
@@ -30,8 +30,8 @@ const sendEmail = async (mailOptions) => {
 // Create contact form email template
 const createContactEmailTemplate = (name, email, message, ipAddress) => {
   return {
-    from: process.env.EMAIL_USER || 'sudhakarnatarajan501@gmail.com',
-    to: 'sudhakarnatarajan501@gmail.com',
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_TO || process.env.EMAIL_USER,
     subject: `🎯 New Contact Form Submission from ${name}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa; border-radius: 10px;">

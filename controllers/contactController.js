@@ -49,10 +49,15 @@ const submitContact = async (req, res) => {
 
     const emailResult = await sendEmail(mailOptions);
 
+    if (!emailResult.success) {
+      console.error('Email not sent:', emailResult.error);
+    }
+
     res.status(200).json({ 
       success: true,
-      message: 'Message sent successfully!',
+      message: 'Message stored successfully',
       emailSent: emailResult.success,
+      emailError: emailResult.success ? undefined : emailResult.error,
       contactId: contact._id
     });
 
