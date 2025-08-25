@@ -1,7 +1,7 @@
 {
   "name": "sudhakar-portfolio-backend",
   "version": "1.0.0",
-  "description": "Backend API for Sudhakar N's Portfolio - MERN Stack",
+  "description": "Backend API for Sudhakar N's Portfolio - Express.js",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,10 +10,8 @@
   },
   "keywords": [
     "portfolio",
-    "mern",
     "api",
     "express",
-    "mongodb",
     "backend"
   ],
   "author": "Sudhakar N",
@@ -23,7 +21,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.3",
     "nodemailer": "^7.0.5"
   },
   "devDependencies": {
