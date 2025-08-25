@@ -10,7 +10,7 @@ const { notFound, errorHandler } = require('./middleware/errorHandler');
 const apiRoutes = require('./routes');
 
 const app = express();
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(corsMiddleware);

@@ -3,13 +3,9 @@ const router = express.Router();
 
 // Import route modules
 const contactRoutes = require('./contactRoutes');
-const userRoutes = require('./userRoutes');
-const projectRoutes = require('./projectRoutes');
 
 // API routes
 router.use('/contact', contactRoutes);
-router.use('/users', userRoutes);
-router.use('/projects', projectRoutes);
 
 // Health check endpoint
 router.get('/health', (req, res) => {

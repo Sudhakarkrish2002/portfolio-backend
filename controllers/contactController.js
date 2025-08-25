@@ -73,58 +73,6 @@ const submitContact = async (req, res) => {
   }
 };
 
-// Get all contacts (for admin purposes)
-const getAllContacts = async (req, res) => {
-  try {
-    const contacts = await Contact.find()
-      .sort({ createdAt: -1 })
-      .select('-__v')
-      .limit(100);
-    
-    res.json({
-      success: true,
-      count: contacts.length,
-      data: contacts
-    });
-  } catch (error) {
-    console.error('❌ Get contacts error:', error);
-    res.status(500).json({ 
-      success: false,
-      error: 'Failed to fetch contacts' 
-    });
-  }
-};
-
-// Get contact statistics
-const getContactStats = async (req, res) => {
-  try {
-    const totalContacts = await Contact.countDocuments();
-    const todayContacts = await Contact.countDocuments({
-      createdAt: { $gte: new Date().setHours(0, 0, 0, 0) }
-    });
-    const thisWeekContacts = await Contact.countDocuments({
-      createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }
-    });
-
-    res.json({
-      success: true,
-      stats: {
-        total: totalContacts,
-        today: todayContacts,
-        thisWeek: thisWeekContacts
-      }
-    });
-  } catch (error) {
-    console.error('❌ Stats error:', error);
-    res.status(500).json({ 
-      success: false,
-      error: 'Failed to fetch statistics' 
-    });
-  }
-};
-
 module.exports = {
-  submitContact,
-  getAllContacts,
-  getContactStats
+  submitContact
 };
